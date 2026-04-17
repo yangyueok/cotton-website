@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>感谢参与 - 棉花宣传调研网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #faf8f5;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #5a8f5a 0%, #7cb37c 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(90, 143, 90, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-md w-full text-center">
+            <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-green-900 mb-4">感谢您的参与！</h1>
+            <p class="text-gray-600 mb-8">您的意见对我们非常重要，我们会认真分析每一份调研数据，为棉花产业发展提供参考。</p>
+            <div class="bg-green-50 rounded-xl p-4 mb-8">
+                <p class="text-green-800 font-medium">📊 已收集问卷数量：</p>
+                <p id="responseCount" class="text-4xl font-bold text-green-600 mt-2">0</p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <a href="index.html" class="btn-primary text-white py-3 rounded-xl font-medium">
+                    返回首页
+                </a>
+                <a href="survey.html" class="bg-gray-100 text-gray-700 py-3 rounded-xl font-medium hover:bg-gray-200 transition-all">
+                    再次填写问卷
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = localStorage.getItem('surveyData');
+            const count = data ? JSON.parse(data).length : 0;
+            document.getElementById('responseCount').textContent = count;
+        });
+    </script>
+</body>
+</html>

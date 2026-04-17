@@ -1,0 +1,14 @@
+{
+  "name": "cotton-survey",
+  "version": "1.0.0",
+  "description": "棉花宣传调研网站",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {},
+  "keywords": ["cotton", "survey", "research"],
+  "author": "Cotton Research Team",
+  "license": "MIT"
+}

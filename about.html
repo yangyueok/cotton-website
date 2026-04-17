@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于棉花 - 棉花宣传调研网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #faf8f5;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5a8f5a;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20flower%20simple%20icon%20green%20color&image_size=square" alt="棉花logo" class="w-8 h-8 rounded-full">
+                    <span class="text-xl font-semibold text-green-700">棉花调研</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-600 hover:text-green-700">首页</a>
+                    <a href="about.html" class="nav-link text-green-800 font-medium">关于棉花</a>
+                    <a href="survey.html" class="nav-link text-gray-600 hover:text-green-700">调研问卷</a>
+                    <a href="stats.html" class="nav-link text-gray-600 hover:text-green-700">数据统计</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="p-2 text-gray-600 hover:text-green-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-600 hover:text-green-700">首页</a>
+                <a href="about.html" class="block text-green-800 font-medium">关于棉花</a>
+                <a href="survey.html" class="block text-gray-600 hover:text-green-700">调研问卷</a>
+                <a href="stats.html" class="block text-gray-600 hover:text-green-700">数据统计</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-16 bg-gradient-to-b from-green-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-green-900 mb-4">关于棉花</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">探索棉花的历史、特性和用途，了解这一神奇的天然纤维</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-green-900 mb-6">棉花的历史</h2>
+                    <p class="text-gray-700 mb-4">棉花是人类最早使用的天然纤维之一，其种植历史可以追溯到5000多年前的印度河流域。在中国，棉花种植始于汉代，经过数千年的发展，已成为重要的经济作物。</p>
+                    <p class="text-gray-700 mb-4">新疆是中国最大的棉花产区，拥有得天独厚的自然条件，生产的长绒棉品质优良，享誉世界。</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-green-50 px-4 py-2 rounded-full">
+                            <span class="text-green-800 font-medium">📜 5000年历史</span>
+                        </div>
+                        <div class="bg-green-50 px-4 py-2 rounded-full">
+                            <span class="text-green-800 font-medium">🌍 全球种植</span>
+                        </div>
+                        <div class="bg-green-50 px-4 py-2 rounded-full">
+                            <span class="text-green-800 font-medium">🇨🇳 中国主产</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ancient%20cotton%20plantation%20historical%20illustration%20vintage&image_size=portrait_4_3" alt="棉花历史" class="rounded-2xl shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-green-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-green-900 text-center mb-12">棉花的特性</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-hover bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🌬️</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-green-800 mb-2">透气性好</h3>
+                    <p class="text-gray-600">棉花纤维天然多孔，空气流通性强，穿着舒适</p>
+                </div>
+                <div class="card-hover bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">💧</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-green-800 mb-2">吸湿排汗</h3>
+                    <p class="text-gray-600">能吸收相当于自身重量25倍的水分，保持干爽</p>
+                </div>
+                <div class="card-hover bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🤱</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-green-800 mb-2">亲肤柔软</h3>
+                    <p class="text-gray-600">天然纤维，无刺激，适合婴儿和敏感肌肤</p>
+                </div>
+                <div class="card-hover bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">♻️</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-green-800 mb-2">环保可降解</h3>
+                    <p class="text-gray-600">天然材质，可自然分解，对环境友好</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-green-900 text-center mb-12">棉花的用途</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20clothing%20fashion%20apparel%20modern%20style&image_size=landscape_16_9" alt="纺织服装" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">👕 纺织服装</h3>
+                        <p class="text-gray-600">制作T恤、衬衫、裤子、内衣等各类服装</p>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20bedding%20sheets%20pillows%20bedroom%20cozy&image_size=landscape_16_9" alt="家纺用品" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">🛏️ 家纺用品</h3>
+                        <p class="text-gray-600">床单、被套、毛巾、浴巾等家居用品</p>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=medical%20cotton%20gauze%20bandage%20healthcare&image_size=landscape_16_9" alt="医疗用品" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-green-800 mb-2">🏥 医疗用品</h3>
+                        <p class="text-gray-600">纱布、棉签、绷带等医用材料</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-r from-green-600 to-green-500">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-white mb-6">中国棉花产业</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-white">
+                <div>
+                    <span class="text-4xl font-bold">80%</span>
+                    <p class="text-green-100">新疆棉花占全国产量</p>
+                </div>
+                <div>
+                    <span class="text-4xl font-bold">35%</span>
+                    <p class="text-green-100">全球产量占比</p>
+                </div>
+                <div>
+                    <span class="text-4xl font-bold">2亿</span>
+                    <p class="text-green-100">从业人口</p>
+                </div>
+                <div>
+                    <span class="text-4xl font-bold">1200亿</span>
+                    <p class="text-green-100">年产值(亿元)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-green-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20flower%20white%20icon%20simple&image_size=square" alt="logo" class="w-8 h-8 rounded-full">
+                        <span class="text-xl font-semibold">棉花调研</span>
+                    </div>
+                    <p class="text-green-200">专注棉花产业研究，推动中国棉花走向世界</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-green-200 hover:text-white">首页</a></li>
+                        <li><a href="about.html" class="text-green-200 hover:text-white">关于棉花</a></li>
+                        <li><a href="survey.html" class="text-green-200 hover:text-white">调研问卷</a></li>
+                        <li><a href="stats.html" class="text-green-200 hover:text-white">数据统计</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">联系方式</h4>
+                    <p class="text-green-200">📍 新疆乌鲁木齐市棉花研究中心</p>
+                    <p class="text-green-200">📞 0991-12345678</p>
+                    <p class="text-green-200">📧 research@cotton.cn</p>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-green-300">
+                <p>© 2024 棉花宣传调研网站 | 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

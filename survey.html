@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调研问卷 - 棉花宣传调研网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #faf8f5;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5a8f5a;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #5a8f5a 0%, #7cb37c 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(90, 143, 90, 0.4);
+        }
+        .checkbox-item {
+            transition: all 0.3s ease;
+        }
+        .checkbox-item:hover {
+            background-color: #f0fdf4;
+        }
+        .checkbox-item.selected {
+            background-color: #dcfce7;
+            border-color: #5a8f5a;
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20flower%20simple%20icon%20green%20color&image_size=square" alt="棉花logo" class="w-8 h-8 rounded-full">
+                    <span class="text-xl font-semibold text-green-700">棉花调研</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-600 hover:text-green-700">首页</a>
+                    <a href="about.html" class="nav-link text-gray-600 hover:text-green-700">关于棉花</a>
+                    <a href="survey.html" class="nav-link text-green-800 font-medium">调研问卷</a>
+                    <a href="stats.html" class="nav-link text-gray-600 hover:text-green-700">数据统计</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="p-2 text-gray-600 hover:text-green-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-600 hover:text-green-700">首页</a>
+                <a href="about.html" class="block text-gray-600 hover:text-green-700">关于棉花</a>
+                <a href="survey.html" class="block text-green-800 font-medium">调研问卷</a>
+                <a href="stats.html" class="block text-gray-600 hover:text-green-700">数据统计</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-16 bg-gradient-to-b from-green-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-green-900 mb-4">棉花消费调研问卷</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">您的意见对我们非常重要，感谢您参与本次调研</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <form id="surveyForm" class="bg-white rounded-2xl shadow-xl p-8">
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-green-800 mb-4">一、您的基本信息</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">姓名</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">性别</label>
+                            <select id="gender" name="gender" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                                <option value="">请选择</option>
+                                <option value="male">男</option>
+                                <option value="female">女</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">年龄</label>
+                            <select id="age" name="age" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                                <option value="">请选择年龄段</option>
+                                <option value="18-25">18-25岁</option>
+                                <option value="26-35">26-35岁</option>
+                                <option value="36-45">36-45岁</option>
+                                <option value="46-55">46-55岁</option>
+                                <option value="55+">55岁以上</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">职业</label>
+                            <input type="text" id="occupation" name="occupation" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-green-800 mb-4">二、棉花产品使用情况</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-medium mb-3">您主要使用哪些棉花制品？（可多选）</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="checkbox-item flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer">
+                                <input type="checkbox" name="products" value="clothing" class="w-5 h-5 text-green-600 rounded focus:ring-green-500">
+                                <span class="ml-3 text-gray-700">服装（T恤、衬衫等）</span>
+                            </label>
+                            <label class="checkbox-item flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer">
+                                <input type="checkbox" name="products" value="underwear" class="w-5 h-5 text-green-600 rounded focus:ring-green-500">
+                                <span class="ml-3 text-gray-700">内衣裤</span>
+                            </label>
+                            <label class="checkbox-item flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer">
+                                <input type="checkbox" name="products" value="bedding" class="w-5 h-5 text-green-600 rounded focus:ring-green-500">
+                                <span class="ml-3 text-gray-700">床上用品（床单、被套等）</span>
+                            </label>
+                            <label class="checkbox-item flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer">
+                                <input type="checkbox" name="products" value="towels" class="w-5 h-5 text-green-600 rounded focus:ring-green-500">
+                                <span class="ml-3 text-gray-700">毛巾浴巾</span>
+                            </label>
+                            <label class="checkbox-item flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer">
+                                <input type="checkbox" name="products" value="home" class="w-5 h-5 text-green-600 rounded focus:ring-green-500">
+                                <span class="ml-3 text-gray-700">家居用品（窗帘、沙发套等）</span>
+                            </label>
+                            <label class="checkbox-item flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer">
+                                <input type="checkbox" name="products" value="other" class="w-5 h-5 text-green-600 rounded focus:ring-green-500">
+                                <span class="ml-3 text-gray-700">其他</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-medium mb-3">您购买棉花制品的频率？</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="frequency" value="weekly" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">每周</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="frequency" value="monthly" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">每月</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="frequency" value="quarterly" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">每季度</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="frequency" value="yearly" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">每年或更少</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-green-800 mb-4">三、购买偏好</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-medium mb-3">在购买棉花制品时，您最看重什么？（按重要性排序）</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="priority" value="quality" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">品质质量</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="priority" value="price" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">价格实惠</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="priority" value="brand" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">品牌口碑</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="priority" value="origin" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">产地来源</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="priority" value="eco" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">环保认证</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-medium mb-3">您是否愿意为新疆棉花产品支付溢价？</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="premium" value="yes" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">愿意，支持国产优质棉</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="premium" value="no" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">不愿意，价格是首要考虑</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="premium" value="depends" class="w-5 h-5 text-green-600">
+                                <span class="ml-3 text-gray-700">视情况而定</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-green-800 mb-4">四、联系方式</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">手机号码</label>
+                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">电子邮箱</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-green-800 mb-4">五、其他建议</h2>
+                    <label class="block text-gray-700 font-medium mb-2">您对棉花产业发展有什么建议？</label>
+                    <textarea id="suggestion" name="suggestion" rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all resize-none"></textarea>
+                </div>
+
+                <div class="flex items-center mb-6">
+                    <input type="checkbox" id="agree" name="agree" required class="w-5 h-5 text-green-600 rounded">
+                    <label for="agree" class="ml-2 text-gray-600">我同意将我的调研数据用于研究分析</label>
+                </div>
+
+                <button type="submit" class="btn-primary w-full text-white py-4 rounded-xl font-medium text-lg">
+                    提交问卷
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-green-800 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20flower%20white%20icon%20simple&image_size=square" alt="logo" class="w-8 h-8 rounded-full">
+                        <span class="text-xl font-semibold">棉花调研</span>
+                    </div>
+                    <p class="text-green-200">专注棉花产业研究，推动中国棉花走向世界</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-green-200 hover:text-white">首页</a></li>
+                        <li><a href="about.html" class="text-green-200 hover:text-white">关于棉花</a></li>
+                        <li><a href="survey.html" class="text-green-200 hover:text-white">调研问卷</a></li>
+                        <li><a href="stats.html" class="text-green-200 hover:text-white">数据统计</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">联系方式</h4>
+                    <p class="text-green-200">📍 新疆乌鲁木齐市棉花研究中心</p>
+                    <p class="text-green-200">📞 0991-12345678</p>
+                    <p class="text-green-200">📧 research@cotton.cn</p>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-green-300">
+                <p>© 2024 棉花宣传调研网站 | 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                if (key === 'products') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            const savedData = localStorage.getItem('surveyData') ? JSON.parse(localStorage.getItem('surveyData')) : [];
+            savedData.push(data);
+            localStorage.setItem('surveyData', JSON.stringify(savedData));
+
+            window.location.href = 'thankyou.html';
+        });
+    </script>
+</body>
+</html>

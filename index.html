@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>棉花——天然安全的选择</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+        .bg-gradient-animated {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fdf8f3 0%, #e8f5e9 50%, #f5f0e8 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5a8f5a;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #5a8f5a 0%, #7cb37c 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(90, 143, 90, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(90, 143, 90, 0.4);
+        }
+        .problem-card {
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .problem-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .solution-card {
+            transition: all 0.4s ease;
+        }
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(90, 143, 90, 0.2);
+        }
+        .safety-badge {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-bg">
+        <div class="bg-gradient-animated"></div>
+
+        <nav class="fixed top-0 left-0 right-0 bg-white/85 backdrop-blur-md shadow-sm z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <span class="text-2xl">🌿</span>
+                        </div>
+                        <span class="text-xl font-bold text-green-800">天然棉</span>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="index.html" class="nav-link text-green-800 font-semibold">首页</a>
+                        <a href="about.html" class="nav-link text-gray-600 hover:text-green-700">关于棉花</a>
+                        <a href="survey.html" class="nav-link text-gray-600 hover:text-green-700">调研问卷</a>
+                        <a href="stats.html" class="nav-link text-gray-600 hover:text-green-700">数据统计</a>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="menu-btn" class="p-2 text-gray-600 hover:text-green-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+                <div class="px-4 py-3 space-y-3">
+                    <a href="index.html" class="block text-green-800 font-semibold">首页</a>
+                    <a href="about.html" class="block text-gray-600 hover:text-green-700">关于棉花</a>
+                    <a href="survey.html" class="block text-gray-600 hover:text-green-700">调研问卷</a>
+                    <a href="stats.html" class="block text-gray-600 hover:text-green-700">数据统计</a>
+                </div>
+            </div>
+        </nav>
+
+        <section class="min-h-screen flex items-center justify-center px-4 pt-20">
+            <div class="max-w-6xl mx-auto text-center">
+                <div class="mb-8 fade-in-up" style="animation-delay: 0.2s;">
+                    <span class="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                        🌱 100% 天然安全
+                    </span>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 fade-in-up" style="animation-delay: 0.4s;">
+                    你还在为这些问题<br><span class="text-green-600">焦虑</span>吗？
+                </h1>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 fade-in-up" style="animation-delay: 0.6s;">
+                    <div class="problem-card bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-red-50 flex items-center justify-center">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=skin%20allergies%20rash%20irritation%20red%20itchy%20abstract%20minimal&image_size=square" alt="皮肤过敏" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">皮肤过敏</h3>
+                        <p class="text-gray-600 text-sm">穿衣服总觉得痒？皮肤敏感不敢随便买衣服？</p>
+                    </div>
+                    
+                    <div class="problem-card bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-yellow-50 flex items-center justify-center">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=towel%20soft%20fluffy%20clean%20hygiene%20abstract%20minimal&image_size=square" alt="毛巾安全" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">毛巾安全</h3>
+                        <p class="text-gray-600 text-sm">毛巾用久了变硬有异味？担心细菌滋生？</p>
+                    </div>
+                    
+                    <div class="problem-card bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-green-100">
+                        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-50 flex items-center justify-center">
+                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bedding%20sheets%20pillow%20comfortable%20sleep%20abstract%20minimal&image_size=square" alt="睡眠质量" class="w-12 h-12 rounded-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">睡眠质量</h3>
+                        <p class="text-gray-600 text-sm">床单不透气闷热？影响睡眠质量？</p>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in-up" style="animation-delay: 0.8s;">
+                    <a href="#solution" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg">
+                        找到解决方案 →
+                    </a>
+                    <a href="survey.html" class="bg-white text-green-700 px-8 py-4 rounded-full font-semibold text-lg border-2 border-green-600 hover:bg-green-50 transition-all">
+                        分享你的感受
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="solution" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="inline-block bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-4">
+                    ✅ 天然解决方案
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">棉花——大自然的安全答案</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">选择天然棉花，告别过敏烦恼，拥抱健康生活</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="solution-card bg-gradient-to-br from-green-50 to-white rounded-2xl p-6 border border-green-100">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <span class="text-2xl">🤱</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">婴儿级安全</h3>
+                    <p class="text-gray-600 text-sm">纯天然纤维，无化学添加，适合最敏感的肌肤</p>
+                </div>
+                
+                <div class="solution-card bg-gradient-to-br from-green-50 to-white rounded-2xl p-6 border border-green-100">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <span class="text-2xl">💧</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">透气排汗</h3>
+                    <p class="text-gray-600 text-sm">天然多孔结构，保持皮肤干爽舒适</p>
+                </div>
+                
+                <div class="solution-card bg-gradient-to-br from-green-50 to-white rounded-2xl p-6 border border-green-100">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <span class="text-2xl">♻️</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">环保可降解</h3>
+                    <p class="text-gray-600 text-sm">源自自然回归自然，对环境零负担</p>
+                </div>
+                
+                <div class="solution-card bg-gradient-to-br from-green-50 to-white rounded-2xl p-6 border border-green-100">
+                    <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
+                        <span class="text-2xl">🛡️</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">品质保障</h3>
+                    <p class="text-gray-600 text-sm">中国优质棉，经过严格质检，品质值得信赖</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-r from-green-600 to-green-500 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">为什么选择新疆棉花？</h2>
+                    <p class="text-green-100 mb-6">新疆拥有得天独厚的自然条件，日照充足、昼夜温差大，孕育出世界顶级的长绒棉。每一朵棉花都经过精心培育，确保最高品质。</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
+                            <span class="text-3xl font-bold">80%</span>
+                            <p class="text-green-200 text-sm">全国棉花产量</p>
+                        </div>
+                        <div class="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
+                            <span class="text-3xl font-bold">35mm+</span>
+                            <p class="text-green-200 text-sm">纤维长度</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=xinjiang%20cotton%20field%20white%20fluffy%20golden%20sunlight%20agriculture%20beautiful&image_size=landscape_16_9" alt="新疆棉花田" class="rounded-2xl shadow-2xl w-full">
+                    <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white text-green-700 px-6 py-3 rounded-full shadow-lg font-semibold">
+                        <span class="safety-badge">🏆</span> 世界顶级品质
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">真实用户反馈</h2>
+                <p class="text-gray-600">听听他们怎么说</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                            <span class="text-xl">👩</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">李女士</h4>
+                            <p class="text-sm text-gray-500">敏感肌肤</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"以前穿化纤衣服总是过敏，自从换成纯棉的，皮肤再也没痒过。"</p>
+                    <div class="flex mt-4 text-yellow-500">★★★★★</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                            <span class="text-xl">👨</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">张先生</h4>
+                            <p class="text-sm text-gray-500">新手爸爸</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"给宝宝买的全是纯棉衣物，柔软舒适，完全不用担心刺激皮肤。"</p>
+                    <div class="flex mt-4 text-yellow-500">★★★★★</div>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                            <span class="text-xl">👵</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">王奶奶</h4>
+                            <p class="text-sm text-gray-500">退休教师</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"用了一辈子纯棉毛巾，越洗越软，比那些化学纤维的舒服多了。"</p>
+                    <div class="flex mt-4 text-yellow-500">★★★★★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">准备好告别过敏烦恼了吗？</h2>
+            <p class="text-gray-600 mb-8">加入我们的调研，了解更多关于棉花的知识，让健康生活从选择天然棉开始</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="survey.html" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg">
+                    立即参与调研
+                </a>
+                <a href="about.html" class="bg-gray-100 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all">
+                    了解更多
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
+                            <span class="text-xl">🌿</span>
+                        </div>
+                        <span class="text-xl font-bold">天然棉</span>
+                    </div>
+                    <p class="text-gray-400">专注棉花产业研究，推动中国棉花走向世界</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">首页</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">关于棉花</a></li>
+                        <li><a href="survey.html" class="text-gray-400 hover:text-white">调研问卷</a></li>
+                        <li><a href="stats.html" class="text-gray-400 hover:text-white">数据统计</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">联系方式</h4>
+                    <p class="text-gray-400">📍 新疆乌鲁木齐市棉花研究中心</p>
+                    <p class="text-gray-400">📞 0991-12345678</p>
+                    <p class="text-gray-400">📧 research@cotton.cn</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>© 2024 棉花宣传调研网站 | 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.problem-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.getElementById('solution').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

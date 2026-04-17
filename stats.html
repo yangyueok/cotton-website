@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据统计 - 棉花宣传调研网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #faf8f5;
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5a8f5a;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20flower%20simple%20icon%20green%20color&image_size=square" alt="棉花logo" class="w-8 h-8 rounded-full">
+                    <span class="text-xl font-semibold text-green-700">棉花调研</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-gray-600 hover:text-green-700">首页</a>
+                    <a href="about.html" class="nav-link text-gray-600 hover:text-green-700">关于棉花</a>
+                    <a href="survey.html" class="nav-link text-gray-600 hover:text-green-700">调研问卷</a>
+                    <a href="stats.html" class="nav-link text-green-800 font-medium">数据统计</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="p-2 text-gray-600 hover:text-green-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="index.html" class="block text-gray-600 hover:text-green-700">首页</a>
+                <a href="about.html" class="block text-gray-600 hover:text-green-700">关于棉花</a>
+                <a href="survey.html" class="block text-gray-600 hover:text-green-700">调研问卷</a>
+                <a href="stats.html" class="block text-green-800 font-medium">数据统计</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-16 bg-gradient-to-b from-green-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-green-900 mb-4">调研数据统计</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">实时展示调研问卷的统计结果</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="stat-card bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <span class="text-4xl font-bold text-green-600" id="totalResponses">0</span>
+                    <p class="text-gray-600 mt-2">总问卷数</p>
+                </div>
+                <div class="stat-card bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <span class="text-4xl font-bold text-blue-600" id="maleCount">0</span>
+                    <p class="text-gray-600 mt-2">男性受访者</p>
+                </div>
+                <div class="stat-card bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <span class="text-4xl font-bold text-pink-600" id="femaleCount">0</span>
+                    <p class="text-gray-600 mt-2">女性受访者</p>
+                </div>
+                <div class="stat-card bg-white rounded-2xl p-6 shadow-lg text-center">
+                    <span class="text-4xl font-bold text-purple-600" id="avgAge">0</span>
+                    <p class="text-gray-600 mt-2">平均年龄区间</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold text-green-800 mb-6">年龄分布</h3>
+                    <canvas id="ageChart"></canvas>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold text-green-800 mb-6">性别比例</h3>
+                    <canvas id="genderChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-lg mb-12">
+                <h3 class="text-xl font-semibold text-green-800 mb-6">棉花制品使用情况</h3>
+                <canvas id="productsChart"></canvas>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold text-green-800 mb-6">购买频率</h3>
+                    <canvas id="frequencyChart"></canvas>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold text-green-800 mb-6">购买偏好</h3>
+                    <canvas id="priorityChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 shadow-lg mt-8">
+                <h3 class="text-xl font-semibold text-green-800 mb-6">愿意为新疆棉花支付溢价</h3>
+                <canvas id="premiumChart"></canvas>
+            </div>
+
+            <div class="mt-8">
+                <button id="exportBtn" class="bg-green-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-green-700 transition-colors">
+                    导出数据
+                </button>
+                <button id="clearBtn" class="bg-red-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-600 transition-colors ml-4">
+                    清空数据
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-green-800 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cotton%20flower%20white%20icon%20simple&image_size=square" alt="logo" class="w-8 h-8 rounded-full">
+                        <span class="text-xl font-semibold">棉花调研</span>
+                    </div>
+                    <p class="text-green-200">专注棉花产业研究，推动中国棉花走向世界</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-green-200 hover:text-white">首页</a></li>
+                        <li><a href="about.html" class="text-green-200 hover:text-white">关于棉花</a></li>
+                        <li><a href="survey.html" class="text-green-200 hover:text-white">调研问卷</a></li>
+                        <li><a href="stats.html" class="text-green-200 hover:text-white">数据统计</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">联系方式</h4>
+                    <p class="text-green-200">📍 新疆乌鲁木齐市棉花研究中心</p>
+                    <p class="text-green-200">📞 0991-12345678</p>
+                    <p class="text-green-200">📧 research@cotton.cn</p>
+                </div>
+            </div>
+            <div class="border-t border-green-700 mt-8 pt-8 text-center text-green-300">
+                <p>© 2024 棉花宣传调研网站 | 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = localStorage.getItem('surveyData');
+            const surveyData = data ? JSON.parse(data) : [];
+
+            document.getElementById('totalResponses').textContent = surveyData.length;
+
+            const genderStats = { male: 0, female: 0, other: 0 };
+            surveyData.forEach(item => {
+                if (item.gender) genderStats[item.gender]++;
+            });
+            document.getElementById('maleCount').textContent = genderStats.male;
+            document.getElementById('femaleCount').textContent = genderStats.female;
+
+            const ageGroups = ['18-25', '26-35', '36-45', '46-55', '55+'];
+            const ageCounts = ageGroups.map(group => 
+                surveyData.filter(item => item.age === group).length
+            );
+            const maxAgeIndex = ageCounts.indexOf(Math.max(...ageCounts));
+            document.getElementById('avgAge').textContent = ageGroups[maxAgeIndex];
+
+            new Chart(document.getElementById('ageChart'), {
+                type: 'bar',
+                data: {
+                    labels: ageGroups,
+                    datasets: [{
+                        label: '人数',
+                        data: ageCounts,
+                        backgroundColor: 'rgba(90, 143, 90, 0.6)',
+                        borderColor: 'rgba(90, 143, 90, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('genderChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['男', '女', '其他'],
+                    datasets: [{
+                        data: [genderStats.male, genderStats.female, genderStats.other],
+                        backgroundColor: ['rgba(59, 130, 246, 0.8)', 'rgba(239, 68, 68, 0.8)', 'rgba(156, 163, 175, 0.8)']
+                    }]
+                },
+                options: { responsive: true }
+            });
+
+            const productTypes = ['clothing', 'underwear', 'bedding', 'towels', 'home', 'other'];
+            const productLabels = ['服装', '内衣裤', '床上用品', '毛巾浴巾', '家居用品', '其他'];
+            const productCounts = productTypes.map(type => 
+                surveyData.filter(item => item.products && item.products.includes(type)).length
+            );
+
+            new Chart(document.getElementById('productsChart'), {
+                type: 'bar',
+                data: {
+                    labels: productLabels,
+                    datasets: [{
+                        label: '选择人数',
+                        data: productCounts,
+                        backgroundColor: 'rgba(90, 143, 90, 0.6)',
+                        borderColor: 'rgba(90, 143, 90, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+
+            const frequencyTypes = ['weekly', 'monthly', 'quarterly', 'yearly'];
+            const frequencyLabels = ['每周', '每月', '每季度', '每年或更少'];
+            const frequencyCounts = frequencyTypes.map(type => 
+                surveyData.filter(item => item.frequency === type).length
+            );
+
+            new Chart(document.getElementById('frequencyChart'), {
+                type: 'pie',
+                data: {
+                    labels: frequencyLabels,
+                    datasets: [{
+                        data: frequencyCounts,
+                        backgroundColor: ['rgba(90, 143, 90, 0.8)', 'rgba(59, 130, 246, 0.8)', 'rgba(251, 191, 36, 0.8)', 'rgba(156, 163, 175, 0.8)']
+                    }]
+                },
+                options: { responsive: true }
+            });
+
+            const priorityTypes = ['quality', 'price', 'brand', 'origin', 'eco'];
+            const priorityLabels = ['品质质量', '价格实惠', '品牌口碑', '产地来源', '环保认证'];
+            const priorityCounts = priorityTypes.map(type => 
+                surveyData.filter(item => item.priority === type).length
+            );
+
+            new Chart(document.getElementById('priorityChart'), {
+                type: 'bar',
+                data: {
+                    labels: priorityLabels,
+                    datasets: [{
+                        label: '选择人数',
+                        data: priorityCounts,
+                        backgroundColor: 'rgba(90, 143, 90, 0.6)',
+                        borderColor: 'rgba(90, 143, 90, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true }
+                    }
+                }
+            });
+
+            const premiumTypes = ['yes', 'no', 'depends'];
+            const premiumLabels = ['愿意支持', '不愿意', '视情况而定'];
+            const premiumCounts = premiumTypes.map(type => 
+                surveyData.filter(item => item.premium === type).length
+            );
+
+            new Chart(document.getElementById('premiumChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: premiumLabels,
+                    datasets: [{
+                        data: premiumCounts,
+                        backgroundColor: ['rgba(90, 143, 90, 0.8)', 'rgba(239, 68, 68, 0.8)', 'rgba(251, 191, 36, 0.8)']
+                    }]
+                },
+                options: { responsive: true }
+            });
+
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                const blob = new Blob([JSON.stringify(surveyData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'survey_data.json';
+                a.click();
+            });
+
+            document.getElementById('clearBtn').addEventListener('click', function() {
+                if (confirm('确定要清空所有调研数据吗？')) {
+                    localStorage.removeItem('surveyData');
+                    location.reload();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
